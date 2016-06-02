@@ -22,7 +22,7 @@ body{
 
 .header{
   padding-bottom: 20px;
-  border-bottom: 1px solid lightgray;
+  // border-bottom: 1px solid lightgray;
   position: fixed;
   width: 100%;
   z-index: 1000;
@@ -63,6 +63,9 @@ body{
         color: limegreen;
       }
     }
+    #highlight{
+      color: limegreen;
+    }
   }
 }
 
@@ -93,7 +96,9 @@ body{
     letter-spacing: 2px;
   }
   h4{
-
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: green;
     a{
       text-decoration: none;
       color: green;
@@ -141,6 +146,12 @@ body{
       font-weight: 200;
       letter-spacing: 2px;
     }
+    #media-content{
+      height: 350px;
+      width: 350px;
+      border: 1px solid black;
+      text-align: center;
+    }
   }
   .post-footer{
     position: absolute;
@@ -172,6 +183,7 @@ body{
       margin-top: 4px;
       margin-right: 12px;
       a{
+        margin-left: 10px;
         text-decoration: none;
         color: white;
         background-color: #252525;
@@ -183,5 +195,14 @@ body{
         }
       }
     }
+  }
+}
+
+
+.loading{
+  margin-top: 300px;
+  text-align: center;
+  i{
+    color: limegreen;
   }
 }

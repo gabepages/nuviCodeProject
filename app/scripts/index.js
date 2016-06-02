@@ -11,9 +11,9 @@ var ActorsCollection = require('./collections/actors');
 
 var actors = new ActorsCollection();
 
-// //Rendering Components
-// var appContainer = $('#app')[0];
-// ReactDOM.render(
-//       React.createElement(App, {collection: actors}),
-//       appContainer
-//     );
+//Rendering Components
+var appContainer = $('#app')[0];
+ReactDOM.render(
+      React.createElement(App, {collection: actors}),
+      appContainer
+    );
