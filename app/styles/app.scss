@@ -1,0 +1,187 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+body{
+  background-color: black;
+}
+
+
+.header{
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgray;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: black;
+}
+#title{
+  text-align: left;
+  color: white;
+  margin: 20px 0 0 20px;
+  font-weight: 100;
+  display: inline-block;
+  letter-spacing: 2px;
+  a{
+    text-decoration: none;
+    color: limegreen;
+    transition: 0.5s;
+    &:hover{
+      color: white;
+    }
+  }
+}
+
+.provider-tabs{
+  float: right;
+  margin-top: 30px;
+  ul{
+    list-style: none;
+    padding: 0;
+    li{
+      font-size: 20px;
+      font-weight: 100;
+      color: white;
+      display: inline;
+      padding:0 28px 0 28px;
+      cursor: pointer;
+      transition: 0.5s;
+      &:hover{
+        color: limegreen;
+      }
+    }
+  }
+}
+
+.main-content{
+  margin-top: 110px;
+}
+
+.activity{
+  height: 500px;
+  margin-bottom: 25px;
+  .wrapper{
+    height: 500px;
+    border: 4px solid black;
+    border-radius: 10px;
+    background-color: white;
+  }
+}
+.side-bar{
+  border-right: 1px solid lightgray;
+  height: 492px;
+  img{
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+  }
+  h3{
+    color: black;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  h4{
+
+    a{
+      text-decoration: none;
+      color: green;
+      font-weight: 200;
+      letter-spacing: 2px;
+      transition: 0.5s;
+      &:hover{
+        color: black;
+      }
+    }
+  }
+}
+
+.post{
+  height: 100%;
+  .status-bar{
+    height: 50px;
+    border-bottom: 1px solid lightgray;
+    #colorstrip{
+      width: 12%;
+      height: 10px;
+      border-radius: 15px;
+      vertical-align: text-top;
+      margin: -1px 0px 0 10px;
+      border-style: solid;
+      border-color: limegreen;
+      background-color: limegreen;
+      display: inline-block;
+    }
+    h3{
+      display: inline-block;
+      margin: 12px 4px;
+      text-transform: uppercase;
+      font-weight: 200;
+      letter-spacing: 2px;
+    }
+    .time{
+      float: right;
+    }
+  }
+  .post-content{
+    margin-top: 20px;
+    p{
+      font-size: 20px;
+      font-weight: 200;
+      letter-spacing: 2px;
+    }
+  }
+  .post-footer{
+    position: absolute;
+    bottom: 5px;
+    border-top: 1px solid lightgray;
+    width: 100%;
+    margin-left: -15px;
+    padding-top: 18px;
+    ul{
+      list-style: none;
+      display: inline-block;
+      padding: 0;
+      li{
+        display: inline-block;
+        p{
+          font-size: 20px;
+          vertical-align: top;
+          display: inline-block;
+          margin: 0 4px 0 12px;
+        }
+        i{
+          color: #303030;
+        }
+      }
+    }
+    .buttons{
+      display: inline-block;
+      float: right;
+      margin-top: 4px;
+      margin-right: 12px;
+      a{
+        text-decoration: none;
+        color: white;
+        background-color: #252525;
+        padding: 9px 12px 9px 12px;
+        border-radius: 30px;
+        transition: 0.4s;
+        &:hover{
+          color: limegreen;
+        }
+      }
+    }
+  }
+}
