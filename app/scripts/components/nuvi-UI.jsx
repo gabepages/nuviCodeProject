@@ -2,7 +2,7 @@ var $ = require('jquery');
 var _ = require('underscore');
 var React = require('react');
 var Backbone = require('backbone');
-
+var moment = require('moment');
 
 var App = React.createClass({
   getInitialState: function(){
@@ -97,7 +97,6 @@ var FeedPanel = React.createClass({
 
   },
   componentWillMount: function(){
-    console.log(this.props.provider);
     var self = this;
     var activities = this.props.collection;
     activities.fetch({
@@ -113,12 +112,20 @@ var FeedPanel = React.createClass({
   },
   filterByProvider: function(provider){
     var filteredResults = this.props.collection.filterByProvider(provider);
-    console.log(filteredResults.models);
     this.setState({
       'activities': filteredResults.models,
       'loading': false
     });
 
+  },
+  slideTextInput: function(id, e){
+    e.preventDefault();
+    var input = "#" + id;
+    input = input.toString();
+    $(input).slideToggle(500);
+  },
+  liked: function(e){
+    e.preventDefault();
   },
   render: function(){
     if (this.state.loading){
@@ -130,22 +137,26 @@ var FeedPanel = React.createClass({
       )
     }else if (this.state.activities){
       var listOfActivities = this.state.activities;
+      var self = this;
       var activities = listOfActivities.map(function(item){
+        var bindID = self.slideTextInput.bind(self, item.id);
         item = item.attributes;
+        var username = '@' + item.actor_username;
+        var usernamePlaceholder = "Hey " + username + "..."
+        var date = moment(item.activity_date).format('MMMM Do, YYYY');
         return (
           <div key={item.id} className="activity col-xs-12 col-md-6 ">
             <div className="wrapper">
               <div className="col-md-3 side-bar">
                 <img src={item.actor_avator} alt="" />
                 <h3>{item.actor_name}</h3>
-              <h4><a target='_blank' href={item.actor_url}>@{item.actor_username}</a></h4>
+              <h4><a target='_blank' href={item.actor_url}>{username}</a></h4>
               </div>
               <div className="col-md-9 post">
                 <div className="row status-bar">
-                  <div id="colorstrip"></div>
-                  <h3>positive</h3>
+                  <Status status={item.activity_sentiment} />
                   <div className="time">
-                    <h3>{item.activity_date}</h3>
+                    <h3 id='date'>{date}</h3>
                   </div>
                 </div>
                 <div className="post-content">
@@ -164,9 +175,12 @@ var FeedPanel = React.createClass({
                     </li>
                   </ul>
                   <div className="buttons">
-                    <a href=""><i className="fa fa-heart fa-lg" aria-hidden="true"></i> Like Post</a>
-                    <a href=""><i className="fa fa-reply fa-lg" aria-hidden="false"></i> Reply To Post</a>
+                    <a onClick={self.liked} href="#"><i className="fa fa-heart fa-lg" aria-hidden="true"></i> Like Post</a>
+                    <a onClick={bindID} href="#"><i className="fa fa-reply fa-lg" aria-hidden="false"></i> Reply To Post</a>
                   </div>
+                  <form>
+                    <input type="text" className="form-control" placeholder={usernamePlaceholder} id={item.id} style={{'display':"none"}}/>
+                  </form>
                 </div>
               </div>
             </div>
@@ -192,6 +206,36 @@ var Post = React.createClass({
       return <img id='media-content' src={this.props.content}/>
     }
   }
-})
+});
+
+var Status = React.createClass({
+  render: function(){
+    if(this.props.status == -1){
+      return (
+        <div className='status'>
+          <div id="colorstrip-red"></div>
+          <h3>negative</h3>
+        </div>
+      )
+    }else if (this.props.status == 0) {
+      return (
+        <div className='status'>
+          <div id="colorstrip-blue"></div>
+          <h3>neutral</h3>
+        </div>
+      )
+
+    }else if (this.props.status == 1) {
+      return(
+        <div className='status'>
+          <div id="colorstrip-green"></div>
+          <h3>Positive</h3>
+        </div>
+      )
+    }
+  }
+});
+
+
 
 module.exports = App;
